@@ -55,6 +55,9 @@
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             </div>
+                            <a class="indigo-text p-l-15" href="{{ route('register') }}">
+                                    {{ __('Create new account') }}
+                            </a>
                         </div>
 
                     </form>

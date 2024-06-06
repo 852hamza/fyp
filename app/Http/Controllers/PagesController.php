@@ -193,6 +193,12 @@ class PagesController extends Controller
         return view('pages.contact');
     }
 
+    // About Page
+    public function about()
+    {
+        return view('pages.about');
+    }
+
     public function messageContact(Request $request)
     {
         $request->validate([

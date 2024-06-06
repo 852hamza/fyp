@@ -7,7 +7,7 @@
                     @if(isset($navbarsettings[0]) && $navbarsettings[0]['name'])
                         {{ $navbarsettings[0]['name'] }}
                     @else
-                        Real State
+                    Terra Trove
                     @endif
                     <i class="material-icons left">location_city</i>
                 </a>
@@ -39,10 +39,13 @@
                     <li class="{{ Request::is('contact') ? 'active' : '' }}">
                         <a href="{{ route('contact') }}">Contact</a>
                     </li>
+                    <li class="{{ Request::is('contact') ? 'active' : '' }}">
+                        <a href="{{ route('about') }}">About Us</a>
+                    </li>
 
                     @guest
-                        <li><a href="{{ route('login') }}"><i class="material-icons">input</i></a></li>
-                        <li><a href="{{ route('register') }}"><i class="material-icons">person_add</i></a></li>
+                        <li><a href="{{ route('login') }}">Login/Register</i></a></li>
+                        <!-- <li><a href="{{ route('register') }}"><i class="material-icons">person_add</i></a></li> -->
                     @else
                         <li>
                             <a class="dropdown-trigger" href="#!" data-target="dropdown-auth-frontend">
@@ -109,6 +112,12 @@
 
         <li class="{{ Request::is('contact') ? 'active' : '' }}">
             <a href="{{ route('contact') }}">Contact</a>
+        </li>
+        <li class="{{ Request::is('about') ? 'active' : '' }}">
+            <a href="{{ route('about') }}">About Us</a>
+        </li>
+        <li class="{{ Request::is('login') ? 'active' : '' }}">
+            <a href="{{ route('login') }}">Login/Register</a>
         </li>
     </ul>
 

@@ -1,14 +1,14 @@
 <footer class="page-footer indigo darken-2">
     <div class="container">
         <div class="row">
-            <div class="col m4 s12">
+            <!-- <div class="col m4 s12">
                 <h5 class="white-text uppercase">About Us</h5>
                 @if(isset($footersettings[0]) && $footersettings[0]['aboutus'])
                     <p class="grey-text text-lighten-4">{{ $footersettings[0]['aboutus'] }}</p>
                 @else
                     <p class="grey-text text-lighten-4">The U.S. real estate market is a dynamic sector that significantly contributes to the economy, involving residential, commercial, and industrial properties. It's characterized by its cyclical nature, influenced by economic conditions, interest rates, and demographic trends. Major markets like New York, Los Angeles, and Chicago often set trends in pricing and design that smaller markets follow. The industry has embraced technological advancements, including online listings and virtual tours, enhancing accessibility and efficiency. Additionally, the market faces ongoing challenges such as housing affordability and sustainability issues, shaping future development and policy.</p>
                 @endif
-            </div>
+            </div> -->
             <div class="col m6 s12">
                 <h5 class="white-text uppercase">Recent Properties</h5>
                 <ul class="collection border0">
