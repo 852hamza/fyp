@@ -72,11 +72,11 @@
 
             $('.carousel.carousel-slider').carousel({
                 fullWidth: true,
-                indicators: true,
+                indicators: false,
             });
 
             $('.carousel.testimonials').carousel({
-                indicators: true,
+                indicators: false,
             });
 
             var city_list =<?php echo json_encode($citylist);?>;

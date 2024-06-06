@@ -434,7 +434,9 @@ a.city-list{
     color: #3f51b5;
 }
 
-
+input::placeholder {
+    color: black;
+  }
 
 /**** SEARCH PROPERTY ****/
 
