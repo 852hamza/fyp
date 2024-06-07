@@ -37,7 +37,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
                                     <th>SL.</th>
                                     <th>Image</th>
@@ -46,14 +46,14 @@
                                     <th>Slug</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                             <tbody>
                                 @foreach( $categories as $key => $category )
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>
-                                        @if(Storage::disk('public')->exists('category/thumb/'.$category->image))
-                                            <img src="{{Storage::url('category/thumb/'.$category->image)}}" alt="{{$category->name}}" width="60" class="img-responsive img-rounded">
+                                        @if(Storage::disk('public')->exists('category/slider/'.$category->image))
+                                            <img src="{{Storage::url('category/slider/'.$category->image)}}" alt="{{$category->name}}" width="60" class="img-responsive img-rounded">
                                         @endif
                                     </td>
                                     <td>{{$category->name}}</td>

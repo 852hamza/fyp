@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
                 'name'          => 'Admin',
                 'username'      => 'admin',
                 'email'         => 'admin@admin.com',
-                'image'         => 'https://randomuser.me/api/portraits/men/1.jpg', // Online image link
+                'image'         => 'users/admin.jpg', // Online image link
                 'about'         => 'Bio of admin',
                 'password'      => bcrypt('123456'),
                 'created_at'    => date("Y-m-d H:i:s"),
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
                 'name'          => 'Agent',
                 'username'      => 'agent',
                 'email'         => 'agent@agent.com',
-                'image'         => 'https://randomuser.me/api/portraits/men/2.jpg', // Online image link
+                'image'         => 'users/agent.jpg', // Online image link
                 'about'         => 'Agent',
                 'password'      => bcrypt('123456'),
                 'created_at'    => date("Y-m-d H:i:s"),
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'name'          => 'User',
                 'username'      => 'user',
                 'email'         => 'user@user.com',
-                'image'         => 'https://randomuser.me/api/portraits/women/1.jpg', // Online image link
+                'image'         => 'users/user.jpg', // Online image link
                 'about'         => 'User',
                 'password'      => bcrypt('123456'),
                 'created_at'    => date("Y-m-d H:i:s"),
