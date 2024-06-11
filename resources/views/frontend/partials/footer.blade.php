@@ -16,7 +16,7 @@
                 </div>
             </div>
         
-            <div class="col m4 s12">
+            <div class="col m4 s12" style="margin-top: 30px;">
                 <ul>
                     <h5 class="white-text uppercase">Quick Links</h5>
                     <li class="uppercase {{ Request::is('property*') ? 'underline' : '' }}">

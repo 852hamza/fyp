@@ -3030,8 +3030,9 @@ ul.staggered-list li {
  .collection-border0-loc{
   display: flex;        /* Aligns children (icons) in a row */
   flex-direction: column;  /* Ensures the items are in a horizontal line */
-  justify-content: center; /* Centers the icons horizontally */
+  /* justify-content: center; */
   /* align-items: center;   */
+  /* margin-top: 20px; */
 }
 
 .collection-border0-loc i {
