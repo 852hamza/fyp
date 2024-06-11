@@ -1,35 +1,27 @@
-<footer class="page-footer indigo darken-2">
-    <div class="container">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+<footer class="page-footer  darken-2">
+    <div class="container-footer">
         <div class="row">
-            <!-- <div class="col m4 s12">
-                <h5 class="white-text uppercase">About Us</h5>
-                @if(isset($footersettings[0]) && $footersettings[0]['aboutus'])
-                    <p class="grey-text text-lighten-4">{{ $footersettings[0]['aboutus'] }}</p>
-                @else
-                    <p class="grey-text text-lighten-4">The U.S. real estate market is a dynamic sector that significantly contributes to the economy, involving residential, commercial, and industrial properties. It's characterized by its cyclical nature, influenced by economic conditions, interest rates, and demographic trends. Major markets like New York, Los Angeles, and Chicago often set trends in pricing and design that smaller markets follow. The industry has embraced technological advancements, including online listings and virtual tours, enhancing accessibility and efficiency. Additionally, the market faces ongoing challenges such as housing affordability and sustainability issues, shaping future development and policy.</p>
-                @endif
-            </div> -->
-            <div class="col m6 s12">
-                <h5 class="white-text uppercase">Recent Properties</h5>
-                <ul class="collection border0">
-
-                    @foreach($footerproperties as $property)
-                    <li class="collection-item transparent clearfix p-0 border0">
-                        <span class="card-image-bg m-r-10" style="background-image:url({{Storage::url('property/'.$property->image)}});width:60px;height:45px;float:left;"></span>
-                        <div class="float-left">
-                            <h5 class="font-18 m-b-0 m-t-5">
-                                <a href="{{ route('property.show',$property->slug) }}" class="white-text">{{ str_limit($property->title,40) }}</a>
-                            </h5>
-                            <p class="m-t-0 m-b-5 grey-text text-lighten-1">Bedroom: {{ $property->bedroom }} Bathroom: {{ $property->bathroom }} </p>
-                        </div>
-                    </li>
-                    @endforeach
-
-                </ul>
+            <div class="col m4 s12">
+                <div > <!-- Center content horizontally -->
+                    <img src="{{ asset('storage/logo-white.png') }}" alt="Terra Trove" style="width: 95px;"> <!-- Adjust path and size as needed -->
+                    <p class="white-text">Experience comprehensive real estate services with us: Manage your property listings, enhance your portfolio, and streamline your transactions using our digital tools.</p>
+                    <div class="social-icons">
+                        <a href="your_facebook_link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="your_linkedin_link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="your_instagram_link" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col m2 s12">
-                <h5 class="white-text uppercase">Menu</h5>
+        
+            <div class="col m4 s12">
                 <ul>
+                    <h5 class="white-text uppercase">Quick Links</h5>
+                    <li class="uppercase {{ Request::is('property*') ? 'underline' : '' }}">
+                        <a href="{{ route('home') }}" class="grey-text text-lighten-3">Home</a>
+                    </li>
                     <li class="uppercase {{ Request::is('property*') ? 'underline' : '' }}">
                         <a href="{{ route('property') }}" class="grey-text text-lighten-3">Properties</a>
                     </li>
@@ -51,26 +43,44 @@
                     </li>
                 </ul>
             </div>
+            <div class="col m4 s12">
+                <ul class="collection-border0-loc" style="margin-top: 75px; margin-right: 130px;">
+                    <li class="collection-item transparent clearfix p-0 border0" style="margin-bottom: 20px;">
+                        <i class="material-icons left">location_on</i>
+                        <span class="white-text">Narowal</span>
+                    </li>
+                    <li class="collection-item transparent clearfix p-0 border0" style="margin-bottom: 20px;">
+                        <i class="material-icons left">phone</i>
+                        <span class="white-text">03061232852</span>
+                    </li>
+                    <li class="collection-item transparent clearfix p-0 border0" style="margin-bottom: 20px;">
+                        <i class="material-icons left">email</i>
+                        <span class="white-text">ali6859099@gmail.com</span>
+                    </li>
+                </ul>
+
+            </div>
+
         </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            @if(isset($footersettings[0]) && $footersettings[0]['footer'])
+        <hr class="hr-footer">
+        <div class="footer-copyright">
+            <div >
+                @if(isset($footersettings[0]) && $footersettings[0]['footer'])
                 {{ $footersettings[0]['footer'] }}
-            @else
-                © 2018 Developer Canvas Studio.
-            @endif
+                @else
+                © Copyright 2024 Terra Trove All Rights Reserved.
+                @endif
 
-            @if(isset($footersettings[0]) && $footersettings[0]['facebook'])
+                @if(isset($footersettings[0]) && $footersettings[0]['facebook'])
                 <a class="grey-text text-lighten-4 right" href="{{ $footersettings[0]['facebook'] }}" target="_blank">FACEBOOK</a>
-            @endif
-            @if(isset($footersettings[0]) && $footersettings[0]['twitter'])
+                @endif
+                @if(isset($footersettings[0]) && $footersettings[0]['twitter'])
                 <a class="grey-text text-lighten-4 right m-r-10" href="{{ $footersettings[0]['twitter'] }}" target="_blank">TWITTER</a>
-            @endif
-            @if(isset($footersettings[0]) && $footersettings[0]['linkedin'])
+                @endif
+                @if(isset($footersettings[0]) && $footersettings[0]['linkedin'])
                 <a class="grey-text text-lighten-4 right m-r-10" href="{{ $footersettings[0]['linkedin'] }}" target="_blank">LINKEDIN</a>
-            @endif
+                @endif
 
+            </div>
         </div>
-    </div>
 </footer>

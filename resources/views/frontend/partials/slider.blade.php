@@ -1,10 +1,10 @@
 <section class="carousel carousel-slider center">
     @if($sliders)
         @foreach($sliders as $slider)
-            <div class="carousel-item" style="background-image: url({{Storage::url('slider/'.$slider->image)}}); background-size: cover; background-repeat: no-repeat; background-position: center;" href="#{{$slider->id}}!">
+            <div class="carousel-item" style="background-image: url({{Storage::url('slider/'.$slider->image)}}); background-size: cover; background-repeat: no-repeat; background-position: center; display: flex; align-items: center; justify-content: center; height: 100%;" href="#{{$slider->id}}!">
                 <div class="slider-content">
                     <h2 class="white-text">{{ $slider->title }}</h2>
-                    <p class="white-text">{{ $slider->description }}</p>
+                    <!-- <p class="white-text">{{ $slider->description }}</p> -->
                 </div>
             </div>
         @endforeach

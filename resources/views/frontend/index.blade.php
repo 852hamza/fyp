@@ -7,7 +7,7 @@
     <section class="section grey lighten-4 center">
         <div class="container">
             <div class="row">
-                <h4 class="section-heading">Services</h4>
+                <h4 class="section-heading">Why Choose US</h4>
             </div>
             <div class="row">
                 @foreach($services as $service)

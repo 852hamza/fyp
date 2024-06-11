@@ -2943,13 +2943,11 @@ ul.staggered-list li {
   }
 }
 
-.page-footer {
-  padding-top: 20px;
-  color: #fff;
-  background-color: #ee6e73;
-}
 
-.page-footer .footer-copyright {
+/* .page-footer.darken-2{
+  ma
+} */
+/* .page-footer .footer-copyright {
   overflow: hidden;
   min-height: 50px;
   display: -webkit-box;
@@ -2967,6 +2965,109 @@ ul.staggered-list li {
   padding: 10px 0px;
   color: rgba(255, 255, 255, 0.8);
   background-color: rgba(51, 51, 51, 0.08);
+} */
+
+.page-footer {
+    background-color: black; /* Dark background for the footer */
+    color: white; /* White text for clear visibility */
+    padding: 10px 0; /* Padding around the footer content */
+}
+.hr-footer{
+  margin-right: 150px;
+}
+.container-footer{
+  margin-left: 130px;
+
+}
+
+.footer-copyright {
+    overflow: hidden; 
+    min-height: 50px; 
+    display:flexbox; 
+    /* align-items: center;  */
+    /* justify-content: space-between;  */
+    padding: 10px 30px; 
+    color: rgba(255, 255, 255, 0.8); 
+    text-align: center;
+}
+
+/* Adjustments for various sections inside the footer for better alignment */
+.page-footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 130px;
+}
+
+/* Social icons and links styling */
+.page-footer a {
+    color: #ccc; /* Light grey color for links */
+    text-decoration: none; /* Removes underline from links */
+}
+
+.page-footer .social-icons {
+  display: flex;        /* Aligns children (icons) in a row */
+  flex-direction: row;  /* Ensures the items are in a horizontal line */
+  justify-content: left; /* Centers the icons horizontally */
+  align-items: center;  
+}
+
+.page-footer .social-icons a {
+  margin: 0 10px;       /* Adjusts spacing between icons */
+  font-size: 17px;      /* Icon size */
+  border-radius: 50%;   /* Makes the icon background circle */
+  display: flex;        
+  align-items: center;  /* Centers the icon vertically */
+  justify-content: center; /* Centers the icon horizontally */
+  background-color: white; /* Background color of icons */
+  color: black;         /* Color of the icon font */
+  padding: 10px;        /* Padding around the icon font */
+  width: 40px;          /* Fixed width */
+  height: 40px;         /* Fixed height to maintain aspect ratio */
+}
+
+
+ .collection-border0-loc{
+  display: flex;        /* Aligns children (icons) in a row */
+  flex-direction: column;  /* Ensures the items are in a horizontal line */
+  justify-content: center; /* Centers the icons horizontally */
+  /* align-items: center;   */
+}
+
+.collection-border0-loc i {
+  margin: 0 10px;       /* Adjusts spacing between icons */
+  font-size: 20px;      /* Icon size */
+  border-radius: 50%;   /* Makes the icon background circle */
+  display: flex;        
+  align-items: center;  /* Centers the icon vertically */
+  justify-content: center; /* Centers the icon horizontally */
+  background-color: white; /* Background color of icons */
+  color: black;         /* Color of the icon font */
+  padding: 10px;        /* Padding around the icon font */
+  width: 40px;          /* Fixed width */
+  height: 40px;         /* Fixed height to maintain aspect ratio */
+}
+
+
+
+
+/* Style adjustments for better mobile responsiveness */
+@media (max-width: 768px) {
+    .page-footer .container {
+        flex-direction: column;
+        
+    }
+
+    .page-footer .col {
+        width: 100%; /* Full width for smaller screens */
+        margin-bottom: 20px; /* Space between stacked columns */
+    }
+
+    .footer-copyright {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
 }
 
 table, th, td {
@@ -4271,10 +4372,10 @@ table span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: white;
   width: 100%;
-  height: 56px;
-  line-height: 56px;
+  height: 70px;
+  line-height: 70px;
 }
 
 nav.nav-extended {
@@ -4391,15 +4492,18 @@ nav ul li {
   padding: 0;
 }
 
-nav ul li.active {
-  background-color: rgba(0, 0, 0, 0.1);
+nav ul li.active,nav ul li.active a {
+  background-color: #004AAD;
+  color: white;
+
 }
 
 nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1rem;
-  color: #fff;
+  color: darkblue;
+  font-weight: bolder;
   display: block;
   padding: 0 15px;
   cursor: pointer;
@@ -4414,11 +4518,33 @@ nav ul a.btn, nav ul a.btn-large, nav ul a.btn-small, nav ul a.btn-large, nav ul
 nav ul a.btn > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.btn-small > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.btn-flat > .material-icons, nav ul a.btn-floating > .material-icons {
   height: inherit;
   line-height: inherit;
+  
 }
 
-nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+
+
+.nav-wrapper {
+  display: flex; 
+  justify-content: space-between; /* Aligns logo to the left and nav items to the right */
+  align-items: center; /* Centers items vertically */
 }
+
+.nav-wrapper .brand-logo {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+ul.right {
+  display: flex;
+  justify-content: center; /* Centers all items in the nav horizontally */
+  flex-grow: 2; /* Gives the navigation items more room to spread out */
+}
+
+ul.right li {
+  padding: 0 7px; /* Adds horizontal padding between items */
+}
+
 
 nav ul.left {
   float: left;
@@ -8376,7 +8502,7 @@ input[type=range].focused:focus:not(.active)::-ms-thumb {
 }
 
 .carousel.carousel-slider .carousel-item h2 {
-  font-size: 24px;
+  font-size: 70px;
   font-weight: 500;
   line-height: 32px;
 }
