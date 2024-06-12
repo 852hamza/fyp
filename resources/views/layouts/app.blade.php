@@ -1,3 +1,4 @@
+<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -44,6 +45,9 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            @if(Auth::user()->role->name == 'user')
+                                <li><a class="nav-link" href="{{ route('cart.index') }}">Cart</a></li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -66,6 +70,8 @@
                 </div>
             </div>
         </nav>
+
+        @include('partials.flash-messages') <!-- Include the flash messages partial -->
 
         <main class="py-4">
             @yield('content')
