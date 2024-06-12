@@ -35,7 +35,9 @@ use App\Http\Controllers\CartController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    // Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/add-to-cart', 'CartController@addToCart')->name('cart.add');
+
     Route::post('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 });
 

@@ -56,6 +56,9 @@
                             <span>{{ ucfirst($property->address) }}</span>
                         </div>
 
+                        @if(auth()->check() && auth()->user()->role_id == 3)
+                        <button class="add-to-cart-btn btn btn-primary" data-id="{{ $property->id }}">Add to Cart</button>
+                        @endif
                         <div class="address">
                             <i class="small material-icons left">check_box</i>
                             <span>{{ ucfirst($property->type) }}</span>
@@ -87,12 +90,6 @@
                             <i class="material-icons">comment</i>
                             <strong>{{ $property->comments_count}}</strong>
                         </span>
-                        @if(auth()->check() && auth()->user()->role_id == 3)
-                        <form action="{{ route('cart.add', $property->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">Add to Cart</button>
-                        </form>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -139,4 +136,94 @@
         });
     })
 </script>
+<!-- <script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').click(function() {
+            var propertyId = $(this).data('id');
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: propertyId
+                },
+                success: function(response) {
+                    if(response.success) {
+                        alert('Added to cart successfully!');
+                    } else {
+                        alert('Failed to add to cart.');
+                    }
+                },
+                error: function() {
+                    alert('Error adding to cart.');
+                }
+            });
+        });
+    });
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').click(function() {
+            var propertyId = $(this).data('id');
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: propertyId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        showTemporaryAlert('Added to cart successfully!');
+                    } else {
+                        showTemporaryAlert('Failed to add to cart.');
+                    }
+                },
+                error: function() {
+                    showTemporaryAlert('Error adding to cart.');
+                }
+            });
+        });
+
+        function showTemporaryAlert(message) {
+            var alertBox = $('<div class="alert-box">' + message + '</div>');
+            $('body').append(alertBox);
+            setTimeout(function() {
+                alertBox.fadeOut(function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        }
+    });
+</script>
+<style>
+    .alert-box {
+        position: fixed;
+        top: 52%;
+        right: 60%;
+        padding: 10px 20px;
+        background-color: #f0ad4e;
+        color: white;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+
+    .add-to-cart-btn {
+        position: absolute;
+        top: 55%;
+        right: 10px;
+        z-index: 10;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        /* padding: 10px 20px; */
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .card {
+        position: relative;
+    }
+</style>
 @endsection
