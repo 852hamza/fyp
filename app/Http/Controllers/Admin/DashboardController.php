@@ -133,7 +133,7 @@ class DashboardController extends Controller
             'name'      => 'required',
             'username'  => 'required',
             'email'     => 'required|email',
-            'image'     => 'image|mimes:jpeg,jpg,png,gif,bmp',
+            'image'     => 'file|mimes:jpeg,jpg,png,gif,bmp,tiff,webp,svg',
             'about'     => 'max:250'
         ]);
 
