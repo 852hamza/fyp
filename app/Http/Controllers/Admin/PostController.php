@@ -6,7 +6,6 @@ use App\Post;
 use App\Category;
 use App\Tag;
 use App\Comment;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -17,28 +16,24 @@ use Auth;
 
 class PostController extends Controller
 {
-
     public function index()
     {
         $posts = Post::latest()->withCount('comments')->get();
-
-        return view('admin.posts.index',compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
-
 
     public function create()
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.create',compact('categories','tags'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
-
 
     public function store(Request $request)
     {
         $request->validate([
             'title'     => 'required|unique:posts|max:255',
-            'image'     => 'required|mimes:jpeg,jpg,png',
+            'image'     => 'required|file',  // Accept any file type
             'categories'=> 'required',
             'tags'      => 'required',
             'body'      => 'required'
@@ -47,18 +42,17 @@ class PostController extends Controller
         $image = $request->file('image');
         $slug  = str_slug($request->title);
 
-        if(isset($image)){
+        if (isset($image) && strpos($image->getMimeType(), 'image') === 0) { // Check if file is an image
             $currentDate = Carbon::now()->toDateString();
             $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-            if(!Storage::disk('public')->exists('posts')){
+            if (!Storage::disk('public')->exists('posts')) {
                 Storage::disk('public')->makeDirectory('posts');
             }
-            $postimage = Image::make($image)->resize(1600, 980)->save();
-            Storage::disk('public')->put('posts/'.$imagename, $postimage);
-
-        }else{
-            $imagename = 'default.png';
+            $postImage = Image::make($image)->resize(1600, 980)->stream();
+            Storage::disk('public')->put('posts/'.$imagename, $postImage);
+        } else {
+            $imagename = 'default.png';  // Default handling for non-image files
         }
 
         $post = new Post();
@@ -67,99 +61,80 @@ class PostController extends Controller
         $post->slug = $slug;
         $post->image = $imagename;
         $post->body = $request->body;
-        if(isset($request->status)){
-            $post->status = true;
-        }
+        $post->status = $request->has('status');
         $post->is_approved = true;
         $post->save();
 
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
 
-        Toastr::success('message', 'Post created successfully.');
+        Toastr::success('Post created successfully.');
         return redirect()->route('admin.posts.index');
-
     }
-
 
     public function show(Post $post)
     {
         $post = Post::withCount('comments')->find($post->id);
-
-        return view('admin.posts.show',compact('post'));
+        return view('admin.posts.show', compact('post'));
     }
-
 
     public function edit(Post $post)
     {
         $categories = Category::all();
         $tags = Tag::all();
         $post = Post::find($post->id);
-
-        $selectedtag = $post->tags->pluck('id');
-
-        return view('admin.posts.edit',compact('categories','tags','post','selectedtag'));
+        $selectedTags = $post->tags->pluck('id');
+        return view('admin.posts.edit', compact('categories', 'tags', 'post', 'selectedTags'));
     }
 
-
-    public function update(Request $request, $post)
+    public function update(Request $request, Post $post)
     {
         $request->validate([
             'title'     => 'required|max:255',
-            'image'     => 'mimes:jpeg,jpg,png',
+            'image'     => 'file',  // Accept any file type
             'categories'=> 'required',
             'tags'      => 'required',
             'body'      => 'required'
         ]);
 
+        $post = Post::find($post->id);
         $image = $request->file('image');
         $slug  = str_slug($request->title);
-        
-        $post = Post::find($post->id);
 
-        if(isset($image)){
+        if (isset($image) && strpos($image->getMimeType(), 'image') === 0) {
             $currentDate = Carbon::now()->toDateString();
             $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-            if(!Storage::disk('public')->exists('posts')){
+            if (!Storage::disk('public')->exists('posts')) {
                 Storage::disk('public')->makeDirectory('posts');
             }
-            if(Storage::disk('public')->exists('posts/'.$post->image)){
+            if (Storage::disk('public')->exists('posts/'.$post->image)) {
                 Storage::disk('public')->delete('posts/'.$post->image);
             }
-            $postimage = Image::make($image)->resize(1600, 980)->save();
-            Storage::disk('public')->put('posts/'.$imagename, $postimage);
-
-        }else{
-            $imagename = $post->image;
+            $postImage = Image::make($image)->resize(1600, 980)->stream();
+            Storage::disk('public')->put('posts/'.$imagename, $postImage);
+        } else {
+            $imagename = $post->image; // Use existing image if no new image is uploaded
         }
 
-        $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->slug = $slug;
         $post->image = $imagename;
         $post->body = $request->body;
-        if(isset($request->status)){
-            $post->status = true;
-        }else{
-            $post->status = false;
-        }
+        $post->status = $request->has('status');
         $post->is_approved = true;
         $post->save();
 
         $post->categories()->sync($request->categories);
         $post->tags()->sync($request->tags);
 
-        Toastr::success('message', 'Post updated successfully.');
+        Toastr::success('Post updated successfully.');
         return redirect()->route('admin.posts.index');
     }
 
-
     public function destroy(Post $post)
     {
-        $post = Post::find($post->id);
-
-        if(Storage::disk('public')->exists('posts/'.$post->image)){
+        if (Storage::disk('public')->exists('posts/'.$post->image)) {
             Storage::disk('public')->delete('posts/'.$post->image);
         }
 
@@ -168,7 +143,7 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->comments()->delete();
 
-        Toastr::success('message', 'Post deleted successfully.');
+        Toastr::success('Post deleted successfully.');
         return back();
     }
 }

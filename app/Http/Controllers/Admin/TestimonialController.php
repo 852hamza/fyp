@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Testimonial;
@@ -16,7 +15,6 @@ class TestimonialController extends Controller
     public function index()
     {
         $testimonials = Testimonial::latest()->get();
-
         return view('admin.testimonials.index', compact('testimonials'));
     }
 
@@ -29,24 +27,24 @@ class TestimonialController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|mimes:jpeg,jpg,png',
+            'image' => 'required|file',  // Changed validation to 'file'
             'testimonial' => 'required|max:200'
         ]);
 
         $image = $request->file('image');
         $slug  = str_slug($request->name);
 
-        if(isset($image)){
+        if (isset($image) && strpos($image->getMimeType(), 'image') === 0) {
             $currentDate = Carbon::now()->toDateString();
             $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
-            if(!Storage::disk('public')->exists('testimonial')){
+            if (!Storage::disk('public')->exists('testimonial')) {
                 Storage::disk('public')->makeDirectory('testimonial');
             }
-            $testimonial = Image::make($image)->resize(160, 160)->save();
-            Storage::disk('public')->put('testimonial/'.$imagename, $testimonial);
-        }else{
-            $imagename = 'default.png';
+            $testimonialImage = Image::make($image)->resize(160, 160)->stream();
+            Storage::disk('public')->put('testimonial/'.$imagename, $testimonialImage);
+        } else {
+            $imagename = 'default.png';  // Handle cases where file is not an image
         }
 
         $testimonial = new Testimonial();
@@ -55,44 +53,42 @@ class TestimonialController extends Controller
         $testimonial->image = $imagename;
         $testimonial->save();
 
-        Toastr::success('message', 'Testimonial created successfully.');
+        Toastr::success('Testimonial created successfully.');
         return redirect()->route('admin.testimonials.index');
     }
-
 
     public function edit($id)
     {
         $testimonial = Testimonial::find($id);
-
         return view('admin.testimonials.edit', compact('testimonial'));
     }
-
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'mimes:jpeg,jpg,png',
+            'image' => 'file',  // Changed validation to 'file'
             'testimonial' => 'required|max:200',
         ]);
 
-        $image = $request->file('image'); 
-        $slug  = str_slug($request->title);
         $testimonial = Testimonial::find($id);
+        $image = $request->file('image'); 
+        $slug  = str_slug($request->name);  // Corrected slug source to 'name'
 
-        if(isset($image)){
+        if (isset($image) && strpos($image->getMimeType(), 'image') === 0) {
             $currentDate = Carbon::now()->toDateString();
             $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-            if(!Storage::disk('public')->exists('testimonial')){
+
+            if (!Storage::disk('public')->exists('testimonial')) {
                 Storage::disk('public')->makeDirectory('testimonial');
             }
-            if(Storage::disk('public')->exists('testimonial/'.$testimonial->image)){
+            if (Storage::disk('public')->exists('testimonial/'.$testimonial->image)) {
                 Storage::disk('public')->delete('testimonial/'.$testimonial->image);
             }
-            $testimonialimg = Image::make($image)->resize(160, 160)->save();
-            Storage::disk('public')->put('testimonial/'.$imagename, $testimonialimg);
-        }else{
-            $imagename = $testimonial->image;
+            $testimonialImage = Image::make($image)->resize(160, 160)->stream();
+            Storage::disk('public')->put('testimonial/'.$imagename, $testimonialImage);
+        } else if (!isset($image)) {
+            $imagename = $testimonial->image;  // Maintain old image if not updated
         }
 
         $testimonial->name = $request->name;
@@ -100,22 +96,21 @@ class TestimonialController extends Controller
         $testimonial->image = $imagename;
         $testimonial->save();
 
-        Toastr::success('message', 'Testimonial updated successfully.');
+        Toastr::success('Testimonial updated successfully.');
         return redirect()->route('admin.testimonials.index');
     }
-
 
     public function destroy($id)
     {
         $testimonial = Testimonial::find($id);
 
-        if(Storage::disk('public')->exists('testimonial/'.$testimonial->image)){
+        if (Storage::disk('public')->exists('testimonial/'.$testimonial->image)) {
             Storage::disk('public')->delete('testimonial/'.$testimonial->image);
         }
 
         $testimonial->delete();
 
-        Toastr::success('message', 'Testimonial deleted successfully.');
+        Toastr::success('Testimonial deleted successfully.');
         return back();
     }
 }
