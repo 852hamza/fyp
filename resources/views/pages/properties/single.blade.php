@@ -76,7 +76,7 @@
                 </div>
                 <div class="col s12 m4">
                     <div>
-                        <h4 class="left">${{ $property->price }}</h4>
+                        <h4 class="left"><span>&#8360;</span>{{ $property->price }}</h4>
                         <button type="button" class="btn btn-small m-t-25 right disabled b-r-20"> For {{ $property->purpose }}</button>
                     </div>
                 </div>

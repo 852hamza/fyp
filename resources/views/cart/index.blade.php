@@ -36,9 +36,9 @@
                     @endphp
                     <tr>
                         <td>{{ $property->title }}</td>
-                        <td>${{ $property->price }}</td>
+                        <td>{{ $property->price }}</td>
                         <td>{{ $item->quantity }}</td>
-                        <td>${{ $subtotal }}</td>
+                        <td>{{ $subtotal }}</td>
                         <td>
                             <form action="{{ route('cart.remove', $item->property_id) }}" method="POST">
                                 @csrf
@@ -50,7 +50,7 @@
                 @endforeach
                 <tr>
                     <td colspan="3" class="text-right"><strong>Total</strong></td>
-                    <td colspan="2">${{ $total }}</td>
+                    <td colspan="2"><span>&#8360;</span><b>:{{ $total }}</b></td>
                 </tr>
             </tbody>
         </table>
