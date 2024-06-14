@@ -25,7 +25,7 @@
                             @auth
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">person</i>
-                                    <input id="name" name="name" type="text" class="validate" value="{{ auth()->user()->name }}" readonly>
+                                    <input id="name" name="name" type="text" class="validate" >
                                     <label for="name">Name</label>
                                 </div>
                             @endauth
@@ -36,11 +36,11 @@
                                     <label for="name">Name</label>
                                 </div>
                             @endguest
-
+                            <!-- value="{{ auth()->user()->email }} -->
                             @auth
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix">mail</i>
-                                    <input id="email" name="email" type="email" class="validate" value="{{ auth()->user()->email }}" readonly>
+                                    <input id="email" name="email" type="email" class="validate" >
                                     <label for="email">Email</label>
                                 </div>
                             @endauth
@@ -54,7 +54,7 @@
 
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">phone</i>
-                                <input id="phone" name="phone" type="number" class="validate">
+                                <input id="phone" name="phone" type="text" class="validate">
                                 <label for="phone">Phone</label>
                             </div>
 
@@ -78,21 +78,21 @@
                     <div class="contact-sidebar">
                         <div class="m-t-30">
                             <i class="material-icons left">call</i>
-                            <h6 class="uppercase">Call us Now</h6>
+                            <h6 class="uppercase">03061232852</h6>
                             @if(isset($contactsettings[0]) && $contactsettings[0]['phone'])
                                 <h6 class="bold m-l-40">{{ $contactsettings[0]['phone'] }}</h6>
                             @endif
                         </div>
                         <div class="m-t-30">
                             <i class="material-icons left">mail</i>
-                            <h6 class="uppercase">Email Address</h6>
+                            <h6 class="uppercase">hamzaarain852sba@gmail.com</h6>
                             @if(isset($contactsettings[0]) && $contactsettings[0]['email'])
                                 <h6 class="bold m-l-40">{{ $contactsettings[0]['email'] }}</h6>
                             @endif
                         </div>
                         <div class="m-t-30">
                             <i class="material-icons left">map</i>
-                            <h6 class="uppercase">Address</h6>
+                            <h6 class="uppercase">Lahore,PK</h6>
                             @if(isset($contactsettings[0]) && $contactsettings[0]['address'])
                                 <h6 class="bold m-l-40">{!! $contactsettings[0]['address'] !!}</h6>
                             @endif

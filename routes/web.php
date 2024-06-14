@@ -41,6 +41,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 });
 
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::group(['middleware' => ['auth', 'agent']], function () {
+    Route::get('agent/properties', 'PropertyController@index')->name('agent.properties');
+    Route::get('agent/properties/create', 'PropertyController@create')->name('agent.properties.create');
+});
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function () {

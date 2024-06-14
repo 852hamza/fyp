@@ -9,9 +9,9 @@
                     <img src="{{ asset('storage/logo-white.png') }}" alt="Terra Trove" style="width: 95px;"> <!-- Adjust path and size as needed -->
                     <p class="white-text">Experience comprehensive real estate services with us: Manage your property listings, enhance your portfolio, and streamline your transactions using our digital tools.</p>
                     <div class="social-icons">
-                        <a href="your_facebook_link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="your_linkedin_link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="your_instagram_link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/chotta.malik.161?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/mhamza-shabbir/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/ali_ahmad013/?utm_source=qr&igsh=Z3BocG50cWloaGts" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
