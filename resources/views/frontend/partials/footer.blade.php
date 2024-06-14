@@ -55,7 +55,8 @@
                     </li>
                     <li class="collection-item transparent clearfix p-0 border0" style="margin-bottom: 20px;">
                         <i class="material-icons left">email</i>
-                        <span class="white-text">ali6859099@gmail.com</span>
+                        
+                        <a href="mailto:ali6859099@gmail.com"><span class="white-text">ali6859099@gmail.com</span></a>
                     </li>
                 </ul>
 
