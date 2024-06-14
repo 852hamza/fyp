@@ -1,19 +1,15 @@
 @extends('frontend.layouts.app')
 
 @section('styles')
-
 @endsection
 
 @section('content')
-
     <section class="section">
         <div class="container">
             <div class="row">
-
                 <div class="col s12 m8">
                     <div class="contact-content">
                         <h4 class="contact-title">Contact Us</h4>
-
                         <form id="contact-us" action="" method="POST">
                             @csrf
                             <input type="hidden" name="mailto" value="{{ $contactsettings[0]['email'] ?? 'p4alam@gmail.com' }}">
@@ -22,35 +18,17 @@
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                             @endauth
 
-                            @auth
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">person</i>
-                                    <input id="name" name="name" type="text" class="validate" >
-                                    <label for="name">Name</label>
-                                </div>
-                            @endauth
-                            @guest
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">person</i>
-                                    <input id="name" name="name" type="text" class="validate">
-                                    <label for="name">Name</label>
-                                </div>
-                            @endguest
-                            <!-- value="{{ auth()->user()->email }} -->
-                            @auth
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">mail</i>
-                                    <input id="email" name="email" type="email" class="validate" >
-                                    <label for="email">Email</label>
-                                </div>
-                            @endauth
-                            @guest
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">mail</i>
-                                    <input id="email" name="email" type="email" class="validate">
-                                    <label for="email">Email</label>
-                                </div>
-                            @endguest
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">person</i>
+                                <input id="name" name="name" type="text" class="validate">
+                                <label for="name">Name</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="email" name="email" type="email" class="validate" value="{{ auth()->check() ? auth()->user()->email : '' }}" {{ auth()->check() ? 'readonly' : '' }}>
+                                <label for="email">Email</label>
+                            </div>
 
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">phone</i>
@@ -68,9 +46,7 @@
                                 <span>SEND</span>
                                 <i class="material-icons right">send</i>
                             </button>
-
                         </form>
-
                     </div>
                 </div> <!-- /.col -->
 
@@ -99,11 +75,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('scripts')
@@ -141,9 +115,7 @@
                     },
                     dataType: 'json'
                 });
-
             })
-        })
-
+        });
     </script>
 @endsection
