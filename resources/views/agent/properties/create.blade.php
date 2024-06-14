@@ -31,7 +31,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <i class="material-icons prefix">monetization_on</i>
+                                    <i class="material-icons prefix"><span>&#8360;</span></i>
                                     <input id="price" name="price" type="number" class="validate">
                                     <label for="price">Price</label>
                                 </div>

@@ -46,8 +46,8 @@ class PropertyController extends Controller
             'image' => 'required|file',  // Accept any file type
             'floor_plan' => 'file',  // Accept any file type
             'description' => 'required',
-            'location_latitude' => 'required',
-            'location_longitude' => 'required',
+            'location_latitude' => 'nullable',
+            'location_longitude' => 'nullable',
         ]);
 
         $image = $request->file('image');
@@ -99,7 +99,6 @@ class PropertyController extends Controller
         $property->description = $request->description;
         $property->location_latitude = $request->location_latitude;
         $property->location_longitude = $request->location_longitude;
-        $property->is_approved = true;  // Assuming auto-approval for demonstration
         if (isset($request->featured)) {
             $property->featured = true;
         }
@@ -155,8 +154,8 @@ class PropertyController extends Controller
             'image' => 'file',  // Allow any file type
             'floor_plan' => 'file',  // Allow any file type
             'description' => 'required',
-            'location_latitude' => 'required',
-            'location_longitude' => 'required'
+            'location_latitude' => 'nullable',
+            'location_longitude' => 'nullable'
         ]);
 
         $image = $request->file('image');
@@ -211,7 +210,6 @@ class PropertyController extends Controller
         $property->location_latitude = $request->location_latitude;
         $property->location_longitude = $request->location_longitude;
         $property->floor_plan = $imageFloorPlan;
-        $property->is_approved = true;  // Assuming auto-approval for demonstration
         $property->save();
 
         $property->features()->sync($request->features);
