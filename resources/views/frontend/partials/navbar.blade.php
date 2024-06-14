@@ -30,13 +30,24 @@
                     <li class="{{ Request::is('contact') ? 'active' : '' }}">
                         <a href="{{ route('contact') }}">Contact</a>
                     </li>
-                    <li class="{{ Request::is('agents*') ? 'active' : '' }}">
+                    <!-- <li class="{{ Request::is('agents*') ? 'active' : '' }}">
                         @if(auth()->check())
                         <a href="{{ route('agent.properties.create') }}"><i>+ Add Property</i></a>
                         @else
                         <a href="{{ route('login') }}?intended=agent/properties/create"><i>+ Add Property</i></a>
                         @endif
+                    </li> -->
+                    <li class="{{ Request::is('agents*') ? 'active' : '' }}">
+                        @guest
+                        <a href="{{ route('login') }}?intended=agent/properties/create"><i>+ Add Property</i></a>
+                        @else
+                        @if(auth()->user()->role_id == 2) <!-- Assuming '2' is the role ID for agents -->
+                        <a href="{{ route('agent.properties.create') }}"><i>+ Add Property</i></a>
+                        @endif
+                        @endguest
                     </li>
+
+
                     @guest
                     <li>
                         <div class="login-wrapper-login">

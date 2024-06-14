@@ -42,7 +42,7 @@
                                         <a href="{{ route('property.show',$property->slug) }}">{{ str_limit($property->title,25) }}</a>
                                     </span>
                                     <h5>
-                                        &dollar;{{ $property->price }}
+                                    <span>&#8360;</span>{{ $property->price }}
                                         <small class="right p-r-10">{{ $property->type }} for {{ $property->purpose }}</small>
                                     </h5>
                                 </div>
