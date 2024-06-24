@@ -129,19 +129,19 @@
 </section>
 
 <!-- Developer SECTION -->
-<section class="section white lighten-3 center">
+<!-- <section class="section white lighten-3 center">
     <div class="container">
 
         <h4 class="section-heading">Developers</h4>
 
         <div class="carousel testimonials">
 
-            <!-- Developer 1 -->
+            
             <div class="carousel-item testimonial-item">
                 <div class="card testimonial-card">
                     <span style="height:40px;display:block;"></span>
                     <div class="card-image testimonial-image">
-                        <img src="{{ asset('storage/developer/hamza.jpg') }}"> <!-- Update with the correct path -->
+                        <img src="{{ asset('storage/developer/hamza.jpg') }}"> 
                     </div>
                     <div class="card-content">
                         <span class="card-title">M Hamza Shabbir</span>
@@ -152,12 +152,11 @@
                 </div>
             </div>
 
-            <!-- Developer 2 -->
             <div class="carousel-item testimonial-item">
                 <div class="card testimonial-card">
                     <span style="height:40px;display:block;"></span>
                     <div class="card-image testimonial-image">
-                        <img src="{{ asset('storage/developer/ali.jpg') }}"> <!-- Update with the correct path -->
+                        <img src="{{ asset('storage/developer/ali.jpg') }}"> 
                     </div>
                     <div class="card-content">
                         <span class="card-title">Ali Ahmad</span>
@@ -168,12 +167,12 @@
                 </div>
             </div>
 
-            <!-- Developer 3 -->
+            
             <div class="carousel-item testimonial-item">
                 <div class="card testimonial-card">
                     <span style="height:40px;display:block;"></span>
                     <div class="card-image testimonial-image">
-                        <img src="{{ asset('storage/developer/adeel.jpg') }}"> <!-- Update with the correct path -->
+                        <img src="{{ asset('storage/developer/adeel.jpg') }}"> 
                     </div>
                     <div class="card-content">
                         <span class="card-title">Adeel Ahmad</span>
@@ -188,7 +187,7 @@
 
     </div>
 
-</section>
+</section> -->
 
 
 
