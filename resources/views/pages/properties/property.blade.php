@@ -60,11 +60,11 @@
                         <button class="add-to-cart-btn btn btn-primary" data-id="{{ $property->id }}">Add to Cart</button>
                         @endif
                         <div class="address">
-                            <i class="small material-icons left">check_box</i>
+                            <i class="small material-icons left">home</i>
                             <span>{{ ucfirst($property->type) }}</span>
                         </div>
                         <div class="address">
-                            <i class="small material-icons left">check_box</i>
+                            <i class="small material-icons left">local_offer</i>
                             <span>For {{ ucfirst($property->purpose) }}</span>
                         </div>
 
@@ -75,15 +75,15 @@
                     </div>
                     <div class="card-action property-action">
                         <span class="btn-flat">
-                            <i class="material-icons">check_box</i>
+                            <i class="material-icons">hotel</i>
                             Bedroom: <strong>{{ $property->bedroom}}</strong>
                         </span>
                         <span class="btn-flat">
-                            <i class="material-icons">check_box</i>
+                            <i class="material-icons">bathtub</i>
                             Bathroom: <strong>{{ $property->bathroom}}</strong>
                         </span>
                         <span class="btn-flat">
-                            <i class="material-icons">check_box</i>
+                            <i class="material-icons">square_foot</i>
                             Area: <strong>{{ $property->area}}</strong> Square Feet
                         </span>
                         <span class="btn-flat">

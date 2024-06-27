@@ -3050,7 +3050,17 @@ ul.staggered-list li {
 }
 
 
+.clear-btn {
+  float: right;
+  margin-top: -17%; /* Adjust this value as needed */
+}
 
+.no-property {
+  color: red;
+  /* font-size: 50px; */
+  margin-top: 40%;
+  margin-left: 30%;
+}
 
 /* Style adjustments for better mobile responsiveness */
 @media (max-width: 768px) {

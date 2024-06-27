@@ -2,7 +2,7 @@
 @section('styles')
 
 <style>
-    .container {
+    .container-about {
         width: 100%;
         /* Ensures container takes full width */
         max-width: 100%;
@@ -99,17 +99,17 @@
 
                 </div>
             </div>
-
-            <div class="col s12 m3">
+    
+            <div class="col s8 m4">
                 <div class="about-sidebar" style="display: flex;">
                     <div class="m-t-30">
-                        <i class="material-icons left">business</i>
-                        <h6 class="uppercase">Our Mission</h6>
+                        <i class="material-icons left" style="margin-top: 15px;">business</i>
+                        <h5 class="uppercase">Our Mission</h5>
                         <p>To deliver outstanding real estate experiences with passion, reliability, and unparalleled expertise.</p>
                     </div>
                     <div class="m-t-30">
-                        <i class="material-icons left">timeline</i>
-                        <h6 class="uppercase">Our Vision</h6>
+                        <i class="material-icons left" style="margin-top: 15px;">timeline</i>
+                        <h5 class="uppercase">Our Vision</h5>
                         <p>To be the leading real estate firm admired for its people, partnerships, and performance.</p>
                     </div>
                     <!-- <div class="m-t-30">
@@ -126,7 +126,7 @@
 
 <!-- Developer SECTION -->
 <section class="section white lighten-3 center">
-    <div class="container">
+    <div class="container-about">
 
         <h4 class="section-heading">Meet Our Team</h4>
 
@@ -145,7 +145,7 @@
                         <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://facebook.com/your-username" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/qaiser.riaz.96930?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
@@ -184,8 +184,8 @@
                         <a href="https://www.linkedin.com/in/ali-ahmad-0201a3299/" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
+                        <a href="https://www.behance.net/aliahmad283" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-behance"></i>
                         </a>
                         <a href="https://www.facebook.com/aa5614535?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook"></i>

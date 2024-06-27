@@ -62,6 +62,7 @@
                     <div class="address m-b-30">
                         <i class="small material-icons left">place</i>
                         <span class="font-18">{{ $property->address }}</span>
+                        <button type="button" class="btn btn-small m-t-19    b-r-20" style="margin-left: 1%; color:white"> For {{ $property->purpose }}</button>
                     </div>
 
                     <div>
@@ -69,15 +70,14 @@
                             <a class="btn-floating btn-small disabled"><i class="material-icons">star</i></a>
                         @endif
 
-                        <span class="btn btn-small disabled b-r-20">Bedroom: {{ $property->bedroom}} </span>
-                        <span class="btn btn-small disabled b-r-20">Bathroom: {{ $property->bathroom}} </span>
-                        <span class="btn btn-small disabled b-r-20">Area: {{ $property->area}} Sq Ft</span>
+                        <span class="btn btn-small disabled b-r-20"> <i class="material-icons left">hotel</i>Bedroom: {{ $property->bedroom}} </span>
+                        <span class="btn btn-small disabled b-r-20"> <i class="material-icons left">bathtub</i>Bathroom: {{ $property->bathroom}} </span>
+                        <span class="btn btn-small disabled b-r-20"> <i class="material-icons left">square_foot</i>Area: {{ $property->area}} Sq Ft</span>
                     </div>
                 </div>
                 <div class="col s12 m4">
                     <div>
                         <h4 class="left"><span>&#8360;</span>{{ $property->price }}</h4>
-                        <button type="button" class="btn btn-small m-t-25 right disabled b-r-20"> For {{ $property->purpose }}</button>
                     </div>
                 </div>
             </div>
