@@ -46,7 +46,7 @@
         /* Ensures image takes up full column width */
         height: 350px;
         /* Keeps image aspect ratio intact */
-        border-radius: 7%;
+        border-radius: 2%;
         /* Optional: Rounds the corners of the image */
     }
 
@@ -72,6 +72,13 @@
         cursor: pointer;
     }
 
+    .about-title {
+        text-align: center;
+    }
+
+    .about-paragraph {
+        font-size: 18px;
+    }
 </style>
 @endsection
 
@@ -81,17 +88,17 @@
     <div class="container">
         <div class="row">
 
-            <div class="col s12 m8">
+            <div class="col s12 m20">
                 <div class="about-content">
                     <h4 class="about-title">About Us</h4>
 
                     <!-- Image Section -->
                     <!-- <div class="about-image"> -->
-                        <!-- <img src="{{ asset('images/about-us.jpg') }}" alt="About Terra Trove" class="responsive-img"> -->
-                        <!-- <img src="https://images.unsplash.com/photo-1565402170291-8491f14678db?text=Real+Estate" alt="About Terra Trove" class="responsive-img" style="width: 400px; height: 200px;  "> -->
+                    <!-- <img src="{{ asset('images/about-us.jpg') }}" alt="About Terra Trove" class="responsive-img"> -->
+                    <!-- <img src="https://images.unsplash.com/photo-1565402170291-8491f14678db?text=Real+Estate" alt="About Terra Trove" class="responsive-img" style="width: 400px; height: 200px;  "> -->
                     <!-- </div> -->
 
-                    <p>Welcome to Terra Trove, your trusted partner in real estate with over five years of industry experience. We are dedicated to providing exceptional service and innovative solutions for all your real estate needs.
+                    <p class="about-paragraph">Welcome to Terra Trove, your trusted partner in real estate with over five years of industry experience. We are dedicated to providing exceptional service and innovative solutions for all your real estate needs.
 
                         Founded in 2019, Terra Trove has quickly become a leading name in the real estate sector, known for our commitment to quality, integrity, and customer satisfaction. Our team of experienced professionals is here to guide you through every step of your real estate journey, whether you're buying, selling, or renting.
 
@@ -99,8 +106,8 @@
 
                 </div>
             </div>
-    
-            <div class="col s8 m4">
+
+            <!-- <div class="col s8 m4">
                 <div class="about-sidebar" style="display: flex;">
                     <div class="m-t-30">
                         <i class="material-icons left" style="margin-top: 15px;">business</i>
@@ -112,24 +119,27 @@
                         <h5 class="uppercase">Our Vision</h5>
                         <p>To be the leading real estate firm admired for its people, partnerships, and performance.</p>
                     </div>
-                    <!-- <div class="m-t-30">
+                    <div class="m-t-30">
                             <i class="material-icons left">group</i>
                             <h6 class="uppercase">Our Team</h6>
                             <p>Meet our dedicated team of real estate professionals who bring their expertise, creativity, and passion to every project.</p>
-                        </div> -->
+                        </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
 </section>
+<hr style="opacity: 0.5; width:80%">
 
 <!-- Developer SECTION -->
 <section class="section white lighten-3 center">
     <div class="container-about">
 
-        <h4 class="section-heading">Meet Our Team</h4>
-
+        <h4>Meet Our Team</h4>
+        <p class="about-paragraph">Introducing our dream team, the driving force behind project Terra Trove, a synergy of visionary designers, tech enthusiasts, and ingenious minds, all united to</p>
+        <p class="about-paragraph">turn creativity into reality.</p>
+        <hr style="text-align: center; width:10%; opacity: 0.5;">
         <div class="row" style="margin-left: 0; margin-right: 0;">
             <!-- Developer 1 -->
             <div class="col s12 m3">
@@ -138,6 +148,7 @@
                     <span class="card-title">Professor Qaisar</span>
                     <p class="designation">Supervisor</p>
                     <p>Expert in Computing & Data Analyst, specializing Theory of Automata and AI Computing.</p>
+                    <hr style="width:100%; opacity: 0.5;">
                     <div class="social-icons">
                         <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
@@ -158,6 +169,7 @@
                     <span class="card-title">M Hamza Shabbir</span>
                     <p class="designation">Cloud Computing Expert</p>
                     <p>Expert in cloud & large scale infrastructure management & specializes in web & database.</p>
+                    <hr style="width:100%; opacity: 0.5;">
                     <div class="social-icons">
                         <a href="https://www.linkedin.com/in/mhamza-shabbir/" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
@@ -180,6 +192,7 @@
                     <span class="card-title">Ali Ahmad</span>
                     <p class="designation">UI/UX Specialist</p>
                     <p>Specializes in UI/UX, passionate about new web technologies.</p>
+                    <hr style="width:100%; opacity: 0.5;">
                     <div class="social-icons">
                         <a href="https://www.linkedin.com/in/ali-ahmad-0201a3299/" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
@@ -202,6 +215,7 @@
                     <span class="card-title">Adeel Ahmad</span>
                     <p class="designation">Front-end Developer</p>
                     <p>Front-end developer with a keen eye for design and user experience, expert in React and JavaScript.</p>
+                    <hr style="width:100%; opacity: 0.5;">
                     <div class="social-icons">
                         <a href="https://www.linkedin.com/in/adeel-ahmad-9a3969247/" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>

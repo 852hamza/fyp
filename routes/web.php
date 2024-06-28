@@ -31,6 +31,23 @@ Route::post('/contact', 'PagesController@messageContact')->name('contact.message
 
 Route::get('/about', 'PagesController@about')->name('about');
 
+// // Admin routes in web.php
+
+// // Display user edit form
+// Route::get('admin/users/{user}/edit', 'UserController@editUser')->name('users.edit');
+
+// // Update user
+// Route::put('admin/users/{user}', 'UserController@updateUser')->name('users.update');
+
+// // Delete user
+// Route::delete('admin/users/{user}', 'UserController@deleteUser')->name('users.destroy');
+
+Route::get('/users', 'UserController@index')->name('users.index');  // List users
+Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');  // Edit user form
+Route::put('/users/{user}', 'UserController@update')->name('users.update');  // Update user
+Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');  // Delete user
+
+
 use App\Http\Controllers\CartController;
 
 Route::middleware(['auth'])->group(function () {

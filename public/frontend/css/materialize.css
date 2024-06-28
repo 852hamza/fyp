@@ -4509,13 +4509,17 @@ nav ul li.active,nav ul li.active a {
 
 }
 
+nav ul li i {
+  padding-right: 5px;
+}
+
 nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1rem;
   color: darkblue;
   font-weight: bolder;
-  display: block;
+  display: flex;
   padding: 0 15px;
   cursor: pointer;
 }

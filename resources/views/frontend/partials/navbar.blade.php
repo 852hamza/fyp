@@ -15,21 +15,24 @@
                 </a>
 
                 <ul class="right hide-on-med-and-down">
-                    <li class="{{ Request::is('/') ? 'active' : '' }}">
-                        <a href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li class="{{ Request::is('property*') ? 'active' : '' }}">
-                        <a href="{{ route('property') }}">Properties</a>
-                    </li>
-                    <li class="{{ Request::is('blog*') ? 'active' : '' }}">
-                        <a href="{{ route('blog') }}">Blog</a>
-                    </li>
-                    <li class="{{ Request::is('about') ? 'active' : '' }}">
-                        <a href="{{ route('about') }}">About Us</a>
-                    </li>
-                    <li class="{{ Request::is('contact') ? 'active' : '' }}">
-                        <a href="{{ route('contact') }}">Contact</a>
-                    </li>
+                    <ul>
+                        <li class="{{ Request::is('/') ? 'active' : '' }}">
+                            <a href="{{ route('home') }}"><i class="material-icons">home</i> Home</a>
+                        </li>
+                        <li class="{{ Request::is('property*') ? 'active' : '' }}">
+                            <a href="{{ route('property') }}"><i class="material-icons">location_city</i> Properties</a>
+                        </li>
+                        <li class="{{ Request::is('blog*') ? 'active' : '' }}">
+                            <a href="{{ route('blog') }}"><i class="material-icons">rss_feed</i> Blog</a>
+                        </li>
+                        <li class="{{ Request::is('about') ? 'active' : '' }}">
+                            <a href="{{ route('about') }}"><i class="material-icons">info</i> About Us</a>
+                        </li>
+                        <li class="{{ Request::is('contact') ? 'active' : '' }}">
+                            <a href="{{ route('contact') }}"><i class="material-icons">mail_outline</i> Contact</a>
+                        </li>
+                    </ul>
+
                     <!-- <li class="{{ Request::is('agents*') ? 'active' : '' }}">
                         @if(auth()->check())
                         <a href="{{ route('agent.properties.create') }}"><i>+ Add Property</i></a>

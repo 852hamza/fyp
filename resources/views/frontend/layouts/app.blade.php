@@ -36,7 +36,9 @@
         @endif
 
         {{-- SEARCH BAR --}}
+        @if (!Request::is('about') && !Request::is('contact'))
         @include('frontend.partials.search')
+        @endif  
         
         {{-- MAIN CONTENT --}}
         <div class="main">
