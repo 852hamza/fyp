@@ -1,14 +1,11 @@
 @extends('frontend.layouts.app')
-@section('styles')
 
+@section('styles')
 <style>
     .container-about {
         width: 100%;
-        /* Ensures container takes full width */
         max-width: 100%;
-        /* Removes any maximum width constraints */
-        padding: 0 30px;
-        /* Adds some padding on the sides */
+        padding: 0 15px; /* Adjusted for better spacing on smaller screens */
     }
 
     .team-card {
@@ -18,52 +15,36 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         text-align: center;
         padding: 20px;
-        margin: 10px;
+        margin: 10px auto; /* Centering cards */
         background: #fff;
-        /* Optional: Adds background color */
         border-radius: 8px;
-        /* Optional: Rounds the corners of the card */
-        width: 400px;
-        /* Makes the card take full width of the column */
+        width: 100%; /* Ensures full width on smaller screens */
+        max-width: 400px; /* Maximum width on larger screens */
     }
 
     .col {
         padding: 10px;
-        /* Adds padding to handle spacing between columns */
-        float: left;
-        /* Ensures that columns are aligned horizontally */
+        float: none; /* Flexbox will handle layout */
         box-sizing: border-box;
-        /* Includes padding in the width calculation */
+        width: 100%; /* Full width by default */
     }
 
-    .col.s12.m3 {
-        width: 25%;
-        /* Each column takes 25% of the row on medium and up screens */
+    @media (min-width: 600px) { /* For tablets and above */
+        .col.s12.m3 {
+            width: 50%; /* 2 columns for tablets */
+        }
+    }
+
+    @media (min-width: 992px) { /* For desktops and larger devices */
+        .col.s12.m3 {
+            width: 25%; /* 4 columns for large screens */
+        }
     }
 
     .team-card img {
-        width: 350px;
-        /* Ensures image takes up full column width */
-        height: 350px;
-        /* Keeps image aspect ratio intact */
+        width: 100%; /* Responsive image */
+        height: auto; /* Maintain aspect ratio */
         border-radius: 2%;
-        /* Optional: Rounds the corners of the image */
-    }
-
-    .card-title {
-        margin-top: 10px;
-        font-size: 20px;
-    }
-
-    .designation {
-        font-size: 16px;
-        color: gray;
-        margin-bottom: 10px;
-        /* Adds space between designation and description */
-    }
-
-    .social-icons {
-        margin-top: 10px;
     }
 
     .social-icons i {
@@ -72,66 +53,32 @@
         cursor: pointer;
     }
 
-    .about-title {
-        text-align: center;
-    }
+    @media (max-width: 767px) {
+        .container-about {
+            padding: 0 10px; /* Smaller padding on smaller screens */
+        }
 
-    .about-paragraph {
-        font-size: 18px;
+        .about-paragraph, .card-title, .designation {
+            font-size: 16px; /* Smaller font size for mobile */
+        }
     }
 </style>
 @endsection
 
 @section('content')
-
 <section class="section">
     <div class="container">
         <div class="row">
-
             <div class="col s12 m20">
                 <div class="about-content">
                     <h4 class="about-title">About Us</h4>
-
-                    <!-- Image Section -->
-                    <!-- <div class="about-image"> -->
-                    <!-- <img src="{{ asset('images/about-us.jpg') }}" alt="About Terra Trove" class="responsive-img"> -->
-                    <!-- <img src="https://images.unsplash.com/photo-1565402170291-8491f14678db?text=Real+Estate" alt="About Terra Trove" class="responsive-img" style="width: 400px; height: 200px;  "> -->
-                    <!-- </div> -->
-
-                    <p class="about-paragraph">Welcome to Terra Trove, your trusted partner in real estate with over five years of industry experience. We are dedicated to providing exceptional service and innovative solutions for all your real estate needs.
-
-                        Founded in 2019, Terra Trove has quickly become a leading name in the real estate sector, known for our commitment to quality, integrity, and customer satisfaction. Our team of experienced professionals is here to guide you through every step of your real estate journey, whether you're buying, selling, or renting.
-
-                        At Terra Trove, we believe in building lasting relationships with our clients and communities, striving to exceed expectations with every project we undertake. Join us as we continue to shape the future of real estate.</p>
-
+                    <p class="about-paragraph">Welcome to Terra Trove, your trusted partner in real estate with over five years of industry experience. We are dedicated to providing exceptional service and innovative solutions for all your real estate needs.</p>
                 </div>
             </div>
-
-            <!-- <div class="col s8 m4">
-                <div class="about-sidebar" style="display: flex;">
-                    <div class="m-t-30">
-                        <i class="material-icons left" style="margin-top: 15px;">business</i>
-                        <h5 class="uppercase">Our Mission</h5>
-                        <p>To deliver outstanding real estate experiences with passion, reliability, and unparalleled expertise.</p>
-                    </div>
-                    <div class="m-t-30">
-                        <i class="material-icons left" style="margin-top: 15px;">timeline</i>
-                        <h5 class="uppercase">Our Vision</h5>
-                        <p>To be the leading real estate firm admired for its people, partnerships, and performance.</p>
-                    </div>
-                    <div class="m-t-30">
-                            <i class="material-icons left">group</i>
-                            <h6 class="uppercase">Our Team</h6>
-                            <p>Meet our dedicated team of real estate professionals who bring their expertise, creativity, and passion to every project.</p>
-                        </div>
-                </div>
-            </div> -->
-
         </div>
     </div>
 </section>
 <hr style="opacity: 0.5; width:80%">
-
 <!-- Developer SECTION -->
 <section class="section white lighten-3 center">
     <div class="container-about">
