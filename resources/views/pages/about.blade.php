@@ -5,7 +5,8 @@
     .container-about {
         width: 100%;
         max-width: 100%;
-        padding: 0 15px; /* Adjusted for better spacing on smaller screens */
+        padding: 0 15px;
+        /* Adjusted for better spacing on smaller screens */
     }
 
     .team-card {
@@ -15,36 +16,61 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         text-align: center;
         padding: 20px;
-        margin: 10px auto; /* Centering cards */
+        margin: 10px auto;
+        /* Centering cards */
         background: #fff;
         border-radius: 8px;
-        width: 100%; /* Ensures full width on smaller screens */
-        max-width: 400px; /* Maximum width on larger screens */
+        width: 100%;
+        /* Ensures full width on smaller screens */
+        max-width: 400px;
+        /* Maximum width on larger screens */
+        height: auto;
+        /* Auto height for card */
+    }
+
+    .team-card img {
+        width: 100%;
+        /* Responsive image */
+        height: 370px;
+        /* Fixed height for all images */
+        object-fit: cover;
+        /* Cover ensures the image fills the height */
+        border-radius: 2%;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
     }
 
     .col {
         padding: 10px;
-        float: none; /* Flexbox will handle layout */
         box-sizing: border-box;
-        width: 100%; /* Full width by default */
+        width: 100%;
+        /* Full width by default */
+        display: flex;
+        align-items: stretch;
+        /* Aligns the cards vertically */
     }
 
-    @media (min-width: 600px) { /* For tablets and above */
+    @media (min-width: 600px) {
+
+        /* For tablets and above */
         .col.s12.m3 {
-            width: 50%; /* 2 columns for tablets */
+            width: 50%;
+            /* 2 columns for tablets */
         }
     }
 
-    @media (min-width: 992px) { /* For desktops and larger devices */
-        .col.s12.m3 {
-            width: 25%; /* 4 columns for large screens */
-        }
-    }
+    @media (min-width: 992px) {
 
-    .team-card img {
-        width: 100%; /* Responsive image */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 2%;
+        /* For desktops and larger devices */
+        .col.s12.m3 {
+            width: 25%;
+            /* 4 columns for large screens */
+        }
     }
 
     .social-icons i {
@@ -55,11 +81,15 @@
 
     @media (max-width: 767px) {
         .container-about {
-            padding: 0 10px; /* Smaller padding on smaller screens */
+            padding: 0 10px;
+            /* Smaller padding on smaller screens */
         }
 
-        .about-paragraph, .card-title, .designation {
-            font-size: 16px; /* Smaller font size for mobile */
+        .about-paragraph,
+        .card-title,
+        .designation {
+            font-size: 16px;
+            /* Smaller font size for mobile */
         }
     }
 </style>
@@ -69,7 +99,7 @@
 <section class="section">
     <div class="container">
         <div class="row">
-            <div class="col s12 m20">
+            <div class="col s12 m12">
                 <div class="about-content">
                     <h4 class="about-title">About Us</h4>
                     <p class="about-paragraph">Welcome to Terra Trove, your trusted partner in real estate with over five years of industry experience. We are dedicated to providing exceptional service and innovative solutions for all your real estate needs.</p>
@@ -186,12 +216,4 @@
 
 </section>
 
-@endsection
-
-@section('scripts')
-<script>
-    $(function() {
-        // Add any specific JavaScript needed for the About Us page
-    })
-</script>
 @endsection

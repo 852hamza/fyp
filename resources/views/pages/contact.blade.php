@@ -22,17 +22,7 @@
         border-radius: 10px;
     }
 
-    /* .contact-details-1 {
-        z-index: 2;
-       
-        color: white;
-    
-        width: 40%;
-        
-        padding: 20px;
-        
-    } */
-
+  
     .contact-form {
         position: absolute;
         /* Absolute positioning */
@@ -75,18 +65,6 @@
         color: rgb(0, 0, 0);
     }
 
-
-
-    .form-field textarea {
-        width: 100%;
-        /* Full width of the form */
-        padding: 8px;
-        /* Padding for inputs */
-    }
-
-    .form-field textarea {
-        height: 300px;
-    }
 
     button {
         background-color: #6200EA;
@@ -233,6 +211,36 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
+
+    .contact-form form textarea {
+        width: 100%;
+        /* Ensures the textarea always takes up the full width of its parent container */
+        padding: 8px;
+        /* Padding inside the textarea */
+        height: 300px;
+        /* Default height */
+    }
+
+    /* Media queries for different screen sizes */
+    @media (max-height: 864px) {
+
+        /* For tablets and smaller devices */
+        .contact-form form textarea {
+            height: 200px;
+            /* Smaller height for smaller devices */
+        }
+    }
+
+    @media (max-height: 500px) {
+
+        /* For mobile phones */
+        .contact-form form textarea {
+            height: 150px;
+            /* Even smaller height to fit on mobile screens */
+            padding: 6px;
+            /* Slightly smaller padding to save space */
+        }
+    }
 </style>
 
 @endsection
@@ -302,7 +310,8 @@
                     <label for="message"><i class="fas fa-comment-dots"></i> Message *</label>
                     <textarea id="message" name="message" class="input-contact" placeholder="Enter your message" required></textarea>
                 </div>
-                <button type="submit" id="msgsubmitbtn" class="btn-send">Send Message</button>
+                <div><button type="submit" id="msgsubmitbtn" class="btn-send">Send Message</button>
+                </div>
             </form>
         </div>
 
