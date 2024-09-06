@@ -27,7 +27,10 @@ Route::get('/blog/tags/{slug}', 'PagesController@blogTags')->name('blog.tags');
 Route::get('/blog/author/{username}', 'PagesController@blogAuthor')->name('blog.author');
 
 Route::get('/contact', 'PagesController@contact')->name('contact');
-Route::post('/contact', 'PagesController@messageContact')->name('contact.message');
+// Route::post('/contact', 'PagesController@messageContact')->name('contact.message');
+// Web routes file
+Route::post('/contact', 'ContactController@sendMessage')->name('contact.send');
+
 
 Route::get('/about', 'PagesController@about')->name('about');
 

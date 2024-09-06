@@ -1,10 +1,14 @@
 @component('mail::message')
-# Hello, {{ $name }}
-{{ $message }}
+# Contact Message
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+**Name:** {{ $data['name'] }}
+
+**Email:** {{ $data['email'] }}
+
+**Phone:** {{ $data['phone'] }}
+
+**Message:**
+{{ $data['message'] }}
 
 Thanks,<br>
 {{ config('app.name') }}

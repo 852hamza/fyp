@@ -292,26 +292,25 @@
 
         </div>
         <div class="contact-form">
-            <form action="{{ route('contact.message') }}" method="POST" id="contact-us">
-                @csrf
+            <form action="{{ route('contact.send') }}" method="POST">
+                @csrf  {{-- CSRF token for form protection --}}
                 <div class="form-field">
-                    <label for="name"><i class="fas fa-user"></i> Name *</label>
-                    <input type="text" id="name" name="name" class="input-contact" placeholder="Enter Your Name" required>
-                </div>
-                <div class="form-field">
-                    <label for="email"><i class="fas fa-envelope"></i> Email *</label>
-                    <input type="email" id="email" name="email" class="input-contact" placeholder="Enter Your Email" required>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-field">
-                    <label for="contact"><i class="fas fa-phone"></i> Contact</label>
-                    <input type="number" id="phone" name="phone" class="input-contact" placeholder="Enter Your Contact Number">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-field">
-                    <label for="message"><i class="fas fa-comment-dots"></i> Message *</label>
-                    <textarea id="message" name="message" class="input-contact" placeholder="Enter your message" required></textarea>
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" required>
                 </div>
-                <div><button type="submit" id="msgsubmitbtn" class="btn-send">Send Message</button>
+                <div class="form-field">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
+                <button type="submit" class="btn-send">Send Message</button>
             </form>
         </div>
 
@@ -327,7 +326,7 @@
         $('#contact-us').submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
-            var url = "{{ route('contact.message') }}";
+            var url = "{{ route('contact.send') }}";
             var btn = $('#msgsubmitbtn');
 
             $.ajax({
