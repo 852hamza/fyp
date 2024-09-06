@@ -121,7 +121,7 @@
             <!-- Developer 1 -->
             <div class="col s12 m3">
                 <div class="card team-card">
-                    <img src="{{ asset('storage/developer/qaiser.jpeg') }}" alt="Professor Qaisar">
+                    <img src="{{ asset('storage/developer/qasir.jpeg') }}" alt="Professor Qaisar">
                     <span class="card-title">Professor Qaisar</span>
                     <p class="designation">Supervisor</p>
                     <p>Expert in Computing & Data Analyst, specializing Theory of Automata and AI Computing.</p>
@@ -142,7 +142,7 @@
             </div>
             <div class="col s12 m3">
                 <div class="card team-card">
-                    <img src="{{ asset('storage/developer/hamza.jpg') }}" alt="M Hamza Shabbir">
+                    <img src="{{ asset('storage/developer/hamza.png') }}" alt="M Hamza Shabbir">
                     <span class="card-title">M Hamza Shabbir</span>
                     <p class="designation">Cloud Computing Expert</p>
                     <p>Expert in cloud & large scale infrastructure management & specializes in web & database.</p>
@@ -188,7 +188,7 @@
             <!-- Developer 3 -->
             <div class="col s12 m3">
                 <div class="card team-card">
-                    <img src="{{ asset('storage/developer/adeel.jpg') }}" alt="Adeel Ahmad">
+                    <img src="{{ asset('storage/developer/adeel.jpeg') }}" alt="Adeel Ahmad">
                     <span class="card-title">Adeel Ahmad</span>
                     <p class="designation">Front-end Developer</p>
                     <p>Front-end developer with a keen eye for design and user experience, expert in React and JavaScript.</p>

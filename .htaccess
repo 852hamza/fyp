@@ -1,0 +1,10 @@
+# Turn rewriting on
+RewriteEngine On
+
+# If the requested filename exists, serve it as is
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redirect all traffic to the public directory
+RewriteRule ^(.*)$ public/$1 [L]
+

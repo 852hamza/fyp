@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel Real Estate') }}</title>
+    <title>{{ config('app.name', 'Terra Trove') }}</title>
     <link rel="icon"  href="{{ asset('storage/logo-white.png') }}">
 
     <!-- Fonts -->

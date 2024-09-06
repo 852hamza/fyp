@@ -6,7 +6,7 @@
                     @if(isset($navbarsettings[0]) && $navbarsettings[0]['name'])
                     <img src="{{ asset('storage/' . $navbarsettings[0]['name']) }}" alt="Logo" style="max-height: 60px; width: auto; margin-left: 10px; margin-right: 10px;">
                     @else
-                    <img src="{{ asset('storage/logo2.png') }}" alt="Logo" style="max-height: 60px; width: auto; margin-left: -100px; margin-right: 10px;">
+                    <img src="{{ asset('storage/logo-black.png') }}" alt="Logo" style="max-height: 60px; width: auto; margin-left: -100px; margin-right: 10px;">
                     @endif
                 </a>
 

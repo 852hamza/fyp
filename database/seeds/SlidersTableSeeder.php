@@ -13,7 +13,7 @@ class SlidersTableSeeder extends Seeder
         $faker = Faker::create();
 
         // Define the path to the slider images
-        $directory = storage_path('app/public/slider');
+        $directory = storage_path('public/storage/category/slider');
         $files = File::files($directory);
 
         // Loop through each file found in the directory
