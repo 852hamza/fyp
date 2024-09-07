@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -47,12 +48,27 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name'      => 'required|string|max:255',
+    //         'email'     => 'required|string|email|max:255|unique:users',
+    //         'password'  => 'required|string|min:6|confirmed',
+    //     ]);
+    // }
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
-            'password'  => 'required|string|min:6|confirmed',
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users|regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/',
+            // 'phone' => [
+            //     'required',
+            //     'regex:/^\+92[0-9]{9}$/',  // Validates phone numbers starting with +92 and exactly 9 digits
+            //     'unique:users', // Make sure phone numbers are unique
+            //     'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/'
+            // ],
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -64,7 +80,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $username   = strtok($data['name'], " "); 
+        $username   = strtok($data['username'], " ");
         $roleid     = isset($data['agent']) ? 2 : 3;
 
         return User::create([
@@ -75,4 +91,15 @@ class RegisterController extends Controller
             'role_id'   => $roleid
         ]);
     }
+    public function checkUsername(Request $request)
+    {
+        $exists = User::where('username', $request->username)->exists();
+        return response()->json(!$exists); // returns true if username is not taken, false otherwise
+    }
+    public function checkEmail(Request $request)
+{
+    $exists = User::where('email', $request->email)->exists();
+    return response()->json(!$exists); // returns false if email is taken, true otherwise
+}
+
 }

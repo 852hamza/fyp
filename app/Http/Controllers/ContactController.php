@@ -12,11 +12,16 @@ class ContactController extends Controller
     public function sendMessage(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'message' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/',
+            'phone' => 'required|regex:/^\+92\d{10}$/',
+            'message' => 'required|min:7',
+        ], [
+            'email.regex' => 'Email must be a valid Gmail address (example@gmail.com).',
+            'phone.regex' => 'Phone number must start with +92 followed by 10 digits.',
+            'message.min' => 'The message must be at least 7 characters long.',
         ]);
+
 
         Mail::to('hamzaarain852sba@gmail.com')->send(new Contact($validated));
 

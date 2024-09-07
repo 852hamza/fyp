@@ -64,6 +64,17 @@ Route::middleware(['auth'])->group(function () {
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 
+// Google OAuth Routes
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+Route::post('/username-check', 'Auth\RegisterController@checkUsername')->name('username.check');
+Route::post('/name-check', 'Auth\RegisterController@checkName')->name('name.check');
+
+
+Route::post('/email-check', 'Auth\RegisterController@checkEmail')->name('email.check');
+
+
 Route::group(['middleware' => ['auth', 'agent']], function () {
     Route::get('agent/properties', 'PropertyController@index')->name('agent.properties');
     Route::get('agent/properties/create', 'PropertyController@create')->name('agent.properties.create');

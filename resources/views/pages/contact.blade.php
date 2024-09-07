@@ -22,7 +22,7 @@
         border-radius: 10px;
     }
 
-  
+
     .contact-form {
         position: absolute;
         /* Absolute positioning */
@@ -221,6 +221,19 @@
         /* Default height */
     }
 
+    #phone::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+        /* Light grey placeholder text */
+    }
+
+    #phone:focus {
+        outline: none;
+        /* Optional: removes the outline */
+        border: 2px solid #6200EA;
+        /* Highlight with a purple border */
+    }
+
+
     /* Media queries for different screen sizes */
     @media (max-height: 864px) {
 
@@ -293,7 +306,7 @@
         </div>
         <div class="contact-form">
             <form action="{{ route('contact.send') }}" method="POST">
-                @csrf  {{-- CSRF token for form protection --}}
+                @csrf {{-- CSRF token for form protection --}}
                 <div class="form-field">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -304,13 +317,13 @@
                 </div>
                 <div class="form-field">
                     <label for="phone">Phone:</label>
-                    <input type="text" id="phone" name="phone" required>
-                </div>
-                <div class="form-field">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="btn-send">Send Message</button>
+                    <input type="tel" id="phone" name="phone" placeholder="+92xxxxxxxxx" pattern="\+92\d{10}" title="Phone number must start with +92 followed by 10 digits." value="+92" maxlength="13" required>
+
+                    <div class="form-field">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">Send Message</button>
             </form>
         </div>
 
@@ -358,6 +371,26 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
+
+        phoneInput.addEventListener('input', function() {
+            let inputVal = this.value;
+            // If the user deletes the +92 prefix, add it back.
+            if (!inputVal.startsWith('+92')) {
+                this.value = '+92' + inputVal.replace(/[^0-9]/g, '');
+            } else {
+                this.value = '+92' + inputVal.slice(3).replace(/[^0-9]/g, '');
+            }
+            // Ensure the total length does not exceed 13 characters (+92 followed by 10 digits)
+            if (this.value.length > 13) {
+                this.value = this.value.slice(0, 13);
+            }
+        });
+    });
+</script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
 
 @endsection
