@@ -137,93 +137,48 @@ class PropertyController extends Controller
         return view('admin.properties.edit', compact('property', 'features', 'videoembed'));
     }
 
-    public function update(Request $request, $property)
+    public function update(Request $request, Property $property)
     {
         $request->validate([
             'title' => 'required|max:255',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'purpose' => 'required',
             'type' => 'required',
-            'bedroom' => 'required',
-            'bathroom' => 'required',
+            'bedroom' => 'required|integer',
+            'bathroom' => 'required|integer',
             'city' => 'required',
             'address' => 'required',
-            'area' => 'required',
-            'image' => 'file',
-            'floor_plan' => 'file',
+            'area' => 'required|numeric',
+            'image' => 'nullable|image',
+            'floor_plan' => 'nullable|image',
             'description' => 'required',
-            'location_latitude' => 'required',
-            'location_longitude' => 'required'
+            'location_latitude' => 'required|numeric',
+            'location_longitude' => 'required|numeric',
         ]);
 
-        $property = Property::find($property);  // Correctly fetch the property instance
+        $property->fill($request->except(['image', 'floor_plan', 'galleryimage']));
 
-        if (!$property) {
-            Toastr::error('Property not found.', 'Error');
-            return redirect()->route('admin.properties.index');
+        $slug = \Illuminate\Support\Str::slug($request->title); // Use Laravel's helper for slugging
+        $property->slug = $slug; // Update slug in case title has changed
+
+        if ($request->hasFile('image')) {
+            $property->image = $this->uploadImage($request->file('image'), 'property', $slug);
         }
 
-        $image = $request->file('image');
-        $slug = str_slug($request->title);
-
-        if (isset($image) && strpos($image->getMimeType(), 'image') === 0) {
-            $currentDate = Carbon::now()->toDateString();
-            $imagename = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            if (!Storage::disk('public')->exists('property')) {
-                Storage::disk('public')->makeDirectory('property');
-            }
-            if (Storage::disk('public')->exists('property/' . $property->image)) {
-                Storage::disk('public')->delete('property/' . $property->image);
-            }
-            $propertyimage = Image::make($image)->stream();
-            Storage::disk('public')->put('property/' . $imagename, $propertyimage);
-            $property->image = $imagename; // Update the image attribute
+        if ($request->hasFile('floor_plan')) {
+            $property->floor_plan = $this->uploadImage($request->file('floor_plan'), 'property', 'floor-plan-' . $slug);
         }
 
-        $floor_plan = $request->file('floor_plan');
-        if (isset($floor_plan) && strpos($floor_plan->getMimeType(), 'image') === 0) {
-            $currentDate = Carbon::now()->toDateString();
-            $imagefloorplan = 'floor-plan-' . $currentDate . '-' . uniqid() . '.' . $floor_plan->getClientOriginalExtension();
-
-            if (!Storage::disk('public')->exists('property')) {
-                Storage::disk('public')->makeDirectory('property');
-            }
-            if (Storage::disk('public')->exists('property/' . $property->floor_plan)) {
-                Storage::disk('public')->delete('property/' . $property->floor_plan);
-            }
-            $propertyfloorplan = Image::make($floor_plan)->stream();
-            Storage::disk('public')->put('property/' . $imagefloorplan, $propertyfloorplan);
-            $property->floor_plan = $imagefloorplan; // Update the floor plan attribute
-        }
-
-        // Update other property fields
-        $property->title = $request->title;
-        $property->price = $request->price;
-        $property->purpose = $request->purpose;
-        $property->type = $request->type;
-        $property->bedroom = $request->bedroom;
-        $property->bathroom = $request->bathroom;
-        $property->city = $request->city;
-        $property->city_slug = str_slug($request->city);
-        $property->address = $request->address;
-        $property->area = $request->area;
-        $property->description = $request->description;
-        $property->location_latitude = $request->location_latitude;
-        $property->location_longitude = $request->location_longitude;
-
-        if (isset($request->featured)) {
-            $property->featured = true;
-        } else {
-            $property->featured = false;
-        }
-
+        $property->featured = $request->has('featured'); // Simplify feature toggle
         $property->save();
-        $property->features()->sync($request->features);
+
+        $property->features()->sync($request->input('features', []));
+        // $this->uploadGalleryImages($request, $property);
 
         Toastr::success('Property updated successfully.', 'Success');
         return redirect()->route('admin.properties.index');
     }
+
 
     public function destroy(Property $property)
     {
