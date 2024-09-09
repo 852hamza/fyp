@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col s3">
+                                <!-- <div class="col s3">
                                     <label class="label-custom" for="type">Property Type</label>
                                     <p>
                                         <label>
@@ -111,7 +111,40 @@
                                             <span>Apartment</span>
                                         </label>
                                     </p>
-                                </div>
+                                </div> -->
+                                <div class="row">
+    <div class="col s3">
+        <label class="label-custom" for="type">Property Type</label>
+        <p>
+            <label>
+                <input class="with-gap" name="type" value="house" type="radio" @isset($property) {{ $property->type == 'house' ? 'checked' : '' }} @endisset />
+                <span>House</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input class="with-gap" name="type" value="apartment" type="radio" @isset($property) {{ $property->type == 'apartment' ? 'checked' : '' }} @endisset />
+                <span>Apartment</span>
+            </label>
+        </p>
+    </div>
+    <div class="col s3">
+        <label class="label-custom" for="purpose">Property Purpose</label>
+        <p>
+            <label>
+                <input class="with-gap" name="purpose" value="sale" type="radio" @isset($property) {{ $property->purpose == 'sale' ? 'checked' : '' }} @endisset />
+                <span>For Sale</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input class="with-gap" name="purpose" value="rent" type="radio" @isset($property) {{ $property->purpose == 'rent' ? 'checked' : '' }} @endisset />
+                <span>For Rent</span>
+            </label>
+        </p>
+    </div>
+</div>
+
                                 <div class="input-field col s6">
                                     <select multiple name="features[]">
                                         <option value="" disabled selected>Choose Features</option>
