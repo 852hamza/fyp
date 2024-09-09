@@ -32,7 +32,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <i class="material-icons prefix">attach_money</i>
+                                    <i class="material-icons prefix">RS</i>
                                     <input id="price" name="price" type="number" value="{{ $property->price }}" class="validate">
                                     <label for="price">Price</label>
                                 </div>
@@ -83,36 +83,38 @@
                             </div>
 
                             <div class="row">
-                                <div class="col s3">
-                                    <label class="label-custom" for="type">Property Type</label>
-                                    <p>
-                                        <label>
-                                            <input class="with-gap" name="type" value="house" type="radio" {{ $property->type == 'house' ? 'checked' : '' }} />
-                                            <span>Sale</span>
-                                        </label>
-                                    <p>
-                                    </p>
-                                        <label>
-                                            <input class="with-gap" name="type" value="apartment" type="radio" {{ $property->type == 'apartment' ? 'checked' : '' }} />
-                                            <span>Rent</span>
-                                        </label>
-                                    </p>
-                                </div>
-                                <div class="col s3">
-                                    <label class="label-custom" for="purpose">Property Purpose</label>
-                                    <p>
-                                        <label>
-                                            <input class="with-gap" name="purpose" value="sale" type="radio" {{ $property->purpose == 'sale' ? 'checked' : '' }} />
-                                            <span>House</span>
-                                        </label>
-                                    <p>
-                                    </p>
-                                        <label>
-                                            <input class="with-gap" name="purpose" value="rent" type="radio" {{ $property->purpose == 'rent' ? 'checked' : '' }} />
-                                            <span>Apartment</span>
-                                        </label>
-                                    </p>
-                                </div>
+    <div class="col s3">
+        <label class="label-custom" for="type">Property Type</label>
+        <p>
+            <label>
+                <input class="with-gap" name="type" value="house" type="radio" {{ $property->type == 'house' ? 'checked' : '' }} />
+                <span>House</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input class="with-gap" name="type" value="apartment" type="radio" {{ $property->type == 'apartment' ? 'checked' : '' }} />
+                <span>Apartment</span>
+            </label>
+        </p>
+    </div>
+    <div class="col s3">
+        <label class="label-custom" for="purpose">Property Purpose</label>
+        <p>
+            <label>
+                <input class="with-gap" name="purpose" value="sale" type="radio" {{ $property->purpose == 'sale' ? 'checked' : '' }} />
+                <span>Sale</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input class="with-gap" name="purpose" value="rent" type="radio" {{ $property->purpose == 'rent' ? 'checked' : '' }} />
+                <span>Rent</span>
+            </label>
+        </p>
+    </div>
+</div>
+
                                 <div class="input-field col s6">
                                     <select multiple name="features[]">
                                         <option value="" disabled>Choose Features</option>
