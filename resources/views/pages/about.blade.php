@@ -55,6 +55,60 @@
         /* Aligns the cards vertically */
     }
 
+    #map {
+        height: 500px;
+        /* Increased height */
+        width: 80%;
+        /* Reduced width */
+        margin: auto;
+        /* Centers the map horizontally */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-no-box-shadow {
+        text-align: center;
+        /* Ensures that the contents are centered */
+    }
+
+    .p-15 {
+        padding: 15px 0;
+        /* Adjust padding for better visual spacing */
+    }
+
+    .map-container {
+        display: flex;
+        justify-content: center;
+        /* Centers the map container horizontally */
+        align-items: center;
+        /* Centers the map container vertically */
+    }
+
+    /* .map-container {
+        position: relative;
+    } */
+
+    #map-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        background-color: #f44336;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    #map-button:hover {
+        background-color: #d32f2f;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
     @media (min-width: 600px) {
 
         /* For tablets and above */
@@ -215,5 +269,34 @@
     </div>
 
 </section>
+<section>
+    <div class="card-no-box-shadow card">
+        <div class="p-15 grey lighten-4">
+            <h5 class="m-0">Location</h5>
+        </div>
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
 
+<script>
+    function initMap() {
+        var propLatLng = {
+            lat: 32.1009752,
+            lng: 74.872238
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13.5,
+            center: propLatLng
+        });
+        var marker = new google.maps.Marker({
+            position: propLatLng,
+            map: map,
+        });
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRLaJEjRudGCuEi1_pqC4n3hpVHIyJJZA&callback=initMap">
+</script>
 @endsection

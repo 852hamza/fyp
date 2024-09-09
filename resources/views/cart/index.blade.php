@@ -53,67 +53,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
-    function addToCart(propertyId) {
-        $.ajax({
-            url: '{{ route("cart.add") }}',
-            method: 'POST',
-            data: {
-                id: propertyId,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                if (response.already_in_cart) {
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Already in Cart',
-                        text: response.message
-                    });
-                } else if (response.replace_confirmation) {
-                    Swal.fire({
-                        title: 'Replace Cart Item?',
-                        text: response.message,
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Yes, replace it!',
-                        cancelButtonText: 'No, keep current'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // If user confirms, replace the cart item
-                            replaceCartItem(response.property_id);
-                        } else {
-                            // If user cancels, do nothing
-                            Swal.fire('Cancelled', 'Your cart item was not replaced', 'info');
-                        }
-                    });
-                } else {
-                    Swal.fire('Success', 'Property added to cart successfully!', 'success');
-                }
-            },
-            error: function(error) {
-                Swal.fire('Error', 'Error adding property to cart!', 'error');
-            }
-        });
-    }
-
-    function replaceCartItem(propertyId) {
-        $.ajax({
-            url: '{{ route("cart.replace") }}',
-            method: 'POST',
-            data: {
-                id: propertyId,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                Swal.fire('Success', response.success, 'success');
-                // Optionally, refresh the page or update the cart UI here
-            },
-            error: function(error) {
-                Swal.fire('Error', 'Error replacing cart item!', 'error');
-            }
-        });
-    }
-</script>
-<script>
     function confirmRemove(propertyId) {
         Swal.fire({
             title: 'Are you sure?',

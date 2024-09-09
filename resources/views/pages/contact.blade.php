@@ -17,7 +17,7 @@
         /* Purple background */
         padding-left: 20px;
         /* Padding for spacing the content */
-        min-height: 95vh;
+        /* min-height: 95vh; */
         /* Full height */
         border-radius: 10px;
     }
@@ -28,7 +28,7 @@
         /* Absolute positioning */
         right: 3%;
         /* Align to the right side */
-        top: 7%;
+        top: 8%;
         /* Align to the top */
         width: 45%;
         /* Width of the form */
@@ -36,7 +36,7 @@
         /* Background color of the form */
         padding: 20px;
         /* Padding inside the form */
-        min-height: 70vh;
+        /* min-height: 70vh; */
         /* Full height */
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
         /* Shadow for 3D effect */
@@ -217,7 +217,7 @@
         /* Ensures the textarea always takes up the full width of its parent container */
         padding: 8px;
         /* Padding inside the textarea */
-        height: 300px;
+        height: 140px;
         /* Default height */
     }
 
@@ -239,7 +239,7 @@
 
         /* For tablets and smaller devices */
         .contact-form form textarea {
-            height: 200px;
+            height: 100px;
             /* Smaller height for smaller devices */
         }
     }
@@ -248,7 +248,7 @@
 
         /* For mobile phones */
         .contact-form form textarea {
-            height: 150px;
+            height: 80px;
             /* Even smaller height to fit on mobile screens */
             padding: 6px;
             /* Slightly smaller padding to save space */
