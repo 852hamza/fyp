@@ -2,9 +2,43 @@
 
 @section('styles')
 <style>
-    #map {
-        height: 320px;
-    }
+    /* Button styling */
+#map {
+    height: 320px;
+    position: relative;
+}
+
+.map-container {
+    position: relative;
+}
+
+#map-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: #f44336; /* Red color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#map-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Add box shadow to the map container to enhance the look */
+#map {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 
     .jssorl-009-spin img {
         animation-name: jssorl-009-spin;
@@ -127,9 +161,9 @@
                         <div class="p-15 grey lighten-4">
                             <h5 class="m-0">Location</h5>
                         </div>
-                        <div class="card-image">
-                            <div id="map"></div>
-                        </div>
+                    
+                        <div class="map-container"><div id="map"></div></div>
+
                     </div>
 
                     @if($videoembed)
