@@ -54,11 +54,16 @@ Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy');
 use App\Http\Controllers\CartController;
 
 Route::middleware(['auth'])->group(function () {
+    // Cart Routes
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    // Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::post('/add-to-cart', 'CartController@addToCart')->name('cart.add');
-
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/replace-cart-item', [CartController::class, 'replaceCartItem'])->name('cart.replace');
     Route::post('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+    // Stripe Checkout Routes
+    Route::post('/checkout', [CartController::class, 'createCheckoutSession'])->name('checkout.create');
+    Route::get('/checkout/success', [CartController::class, 'checkoutSuccess'])->name('checkout.success');
+    Route::get('/checkout/cancel', [CartController::class, 'checkoutCancel'])->name('checkout.cancel');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -107,6 +107,73 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').click(function() {
+            var propertyId = $(this).data('id');
+            $.ajax({
+                url: "{{ route('cart.add') }}",
+                type: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: propertyId
+                },
+                success: function(response) {
+                    if (response.already_in_cart) {
+                        // If the same property is already in the cart, show notification
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Already in Cart',
+                            text: response.message
+                        });
+                    } else if (response.replace_confirmation) {
+                        // If a different property is already in the cart, show a confirmation dialog
+                        Swal.fire({
+                            title: 'Replace Cart Item?',
+                            text: response.message,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, replace it!',
+                            cancelButtonText: 'No, keep current'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // If user confirms, replace the cart item
+                                replaceCartItem(response.property_id);
+                            } else {
+                                Swal.fire('Cancelled', 'Your current cart item was not replaced', 'info');
+                            }
+                        });
+                    } else {
+                        // If a new property is added without conflict, show success message
+                        Swal.fire('Success', 'Property added to cart successfully!', 'success');
+                    }
+                },
+                error: function() {
+                    Swal.fire('Error', 'Error adding property to cart!', 'error');
+                }
+            });
+        });
+
+        function replaceCartItem(propertyId) {
+            $.ajax({
+                url: '{{ route("cart.replace") }}',
+                method: 'POST',
+                data: {
+                    id: propertyId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    Swal.fire('Success', response.success, 'success');
+                    // Optionally, refresh the page or update the cart UI here
+                },
+                error: function() {
+                    Swal.fire('Error', 'Error replacing cart item!', 'error');
+                }
+            });
+        }
+    });
+</script>
 
 <script>
     $(function() {
@@ -136,67 +203,7 @@
         });
     })
 </script>
-<!-- <script>
-    $(document).ready(function() {
-        $('.add-to-cart-btn').click(function() {
-            var propertyId = $(this).data('id');
-            $.ajax({
-                url: "{{ route('cart.add') }}",
-                type: "POST",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: propertyId
-                },
-                success: function(response) {
-                    if(response.success) {
-                        alert('Added to cart successfully!');
-                    } else {
-                        alert('Failed to add to cart.');
-                    }
-                },
-                error: function() {
-                    alert('Error adding to cart.');
-                }
-            });
-        });
-    });
-</script> -->
 
-<script>
-    $(document).ready(function() {
-        $('.add-to-cart-btn').click(function() {
-            var propertyId = $(this).data('id');
-            $.ajax({
-                url: "{{ route('cart.add') }}",
-                type: "POST",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: propertyId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        showTemporaryAlert('Added to cart successfully!');
-                    } else {
-                        showTemporaryAlert('Failed to add to cart.');
-                    }
-                },
-                error: function() {
-                    showTemporaryAlert('Error adding to cart.');
-                }
-            });
-        });
-
-        function showTemporaryAlert(message) {
-            var alertBox = $('<div class="alert-box">' + message + '</div>');
-            $('body').append(alertBox);
-            setTimeout(function() {
-                alertBox.fadeOut(function() {
-                    $(this).remove();
-                });
-            }, 2000);
-        }
-    });
-</script>
 <style>
     .alert-box {
         position: fixed;
@@ -217,7 +224,6 @@
         background-color: #007bff;
         color: white;
         border: none;
-        /* padding: 10px 20px; */
         border-radius: 5px;
         cursor: pointer;
     }
@@ -226,4 +232,5 @@
         position: relative;
     }
 </style>
+
 @endsection
