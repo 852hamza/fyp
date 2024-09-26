@@ -50,6 +50,11 @@ class PropertyController extends Controller
             'location_longitude' => 'nullable',
         ]);
 
+
+        // Calculate 2% fee and add it to the original price
+        $price = $request->input('price');
+        $priceWithFee = $price + ($price * 0.02); // Add 2% to the price
+
         $image = $request->file('image');
         $slug = str_slug($request->title);
 
@@ -83,7 +88,8 @@ class PropertyController extends Controller
         $property = new Property();
         $property->title = $request->title;
         $property->slug = $slug;
-        $property->price = $request->price;
+        // $property->price = $request->price;
+        $property->price = $priceWithFee;
         $property->purpose = $request->purpose;
         $property->type = $request->type;
         $property->image = $imageName;
@@ -158,6 +164,10 @@ class PropertyController extends Controller
             'location_longitude' => 'nullable'
         ]);
 
+         // Calculate 2% fee and add it to the original price
+        $price = $request->input('price');
+        $priceWithFee = $price + ($price * 0.02); // Add 2% to the price
+
         $image = $request->file('image');
         $slug = str_slug($request->title);
 
@@ -196,7 +206,8 @@ class PropertyController extends Controller
 
         $property->title = $request->title;
         $property->slug = $slug;
-        $property->price = $request->price;
+        // $property->price = $request->price;
+        $property->price = $priceWithFee;
         $property->purpose = $request->purpose;
         $property->type = $request->type;
         $property->image = $imageName;
