@@ -1,16 +1,17 @@
-name: Greetings
+name: CI/CD Workflow
 
-on: [pull_request_target, issues]
+on:
+  push:
+    branches:
+      - prod
+      - uat
+      - dev
 
 jobs:
-  greeting:
+  approve:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
+    environment: ${{ github.ref_name }}
+
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
-        pr-message: "Message that will be displayed on users' first pull request"
+      - name: Approval Required
+        run: echo "Approval is required to proceed with this workflow."
