@@ -9,6 +9,7 @@ on:
       - staging
       - dev
 
+
 jobs:
   detect-changes:
     runs-on: ubuntu-latest
