@@ -26,19 +26,19 @@ jobs:
           echo "Detecting changes in workflow files..."
           git diff --name-only HEAD^ | grep '.github/workflows/' || echo "No workflows changed"
 
-      # Notify via Email
-      - name: Send Notification Email
-        if: success()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Workflow Change Detected in ${{ github.ref_name }}"
-          body: "Workflow files have been added/modified/deleted in branch: ${{ github.ref_name }}. Approval is required."
-          to: "approvers@example.com"
-          from: "no-reply@example.com"
+      # # Notify via Email
+      # - name: Send Notification Email
+      #   if: success()
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: smtp.gmail.com
+      #     server_port: 587
+      #     username: ${{ secrets.EMAIL_USERNAME }}
+      #     password: ${{ secrets.EMAIL_PASSWORD }}
+      #     subject: "Workflow Change Detected in ${{ github.ref_name }}"
+      #     body: "Workflow files have been added/modified/deleted in branch: ${{ github.ref_name }}. Approval is required."
+      #     to: "approvers@example.com"
+      #     from: "no-reply@example.com"
 
       # Require Manual Approval
       - name: Approval Required
